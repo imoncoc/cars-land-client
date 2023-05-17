@@ -1,5 +1,7 @@
 import React from 'react';
 import './Home.css'
+import { faCar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Home = () => {
     return (
@@ -18,7 +20,7 @@ const Home = () => {
               <h2>
                 $60,000
                 <a href="" className="title-icon d-inline-block mx-2">
-                  <i className="fas fa-play"></i>
+                  <FontAwesomeIcon icon={faCar} />
                 </a>
               </h2>
             </div>

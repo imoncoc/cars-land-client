@@ -3,6 +3,10 @@
     color: var(--color-pink-light);
 }
 
+.footer-logo{
+    width: 6rem;
+}
+
 .footer-logo {
     font-family: var(--font-rajdhani);
 }

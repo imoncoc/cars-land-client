@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
     return (
@@ -9,7 +10,8 @@ const Footer = () => {
         <div className="container-fluid">
           <div className="row mx-4">
             <div className="col-10 col-sm-6 col-md-4 col-lg-3 mx-auto my-5 text-center text-md-start">
-              <h3 className="footer-logo fs-1 fw-semibold">LOGO.</h3>
+              {/* <h3 className="footer-logo fs-1 fw-semibold">LOGO.</h3> */}
+              <img className='footer-logo' src={"https://i.ibb.co/DYJyys2/Cars-Land-logo.png"} alt="" />
               <p className="footer-logo-description mb-5">
                 Be the first who learns about our great promotions!
               </p>
@@ -18,13 +20,14 @@ const Footer = () => {
               <div className="d-flex justify-content-center justify-content-md-start">
                 <p className="me-3 footer-icon footer-icon-twitter">
                   {/* <i className="fa-brands fa-twitter fa-2x"></i> */}
-                  <FontAwesomeIcon icon={faCoffee} />
+                  <FontAwesomeIcon className="fa-2x" icon={faFacebook} />
                 </p>
                 <p className="me-3 footer-icon footer-icon-facebook px-3">
-                  <i className="fa-brands fa-facebook-f fa-2x"></i>
+                  <FontAwesomeIcon className="fa-2x" icon={faTwitter} />
                 </p>
                 <p className="footer-icon footer-icon-instagram">
-                  <i className="fa-brands fa-instagram fa-2x"></i>
+                  {/* <i className="fa-brands fa-instagram fa-2x"></i> */}
+                  <FontAwesomeIcon className="fa-2x" icon={faInstagram} />
                 </p>
               </div>
             </div>
@@ -64,7 +67,7 @@ const Footer = () => {
               <h2 className="footer-products fs-3">SUBSCRIBE</h2>
               <div className="footer-product-items">
                 <h4 className="my-5">
-                  Subscribe our newsletter and get discount 30% off
+                  Subscribe our cars Land and get discount 30% off
                 </h4>
 
                 <div className="input-group mb-3 overflow-hidden">
