@@ -1,0 +1,32 @@
+
+:root {
+  --mainBlue: #40ACF1;
+  --transparentBlue: rgba(64, 172, 241, 0.7);
+  --mainWhite: #ffffff;
+  --mainBlack: #292F36;
+  --mainGrey: rgba(216, 214, 214);
+  --mainYellow: #e3b505;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.navbar {
+  /* background: #fdf2e9; */
+  background: var(--mainWhite);
+}
+
+.active {
+  color: var(--mainBlue) !important;
+}
+
+.default {
+  color: #242325 !important;
+}
