@@ -36,12 +36,12 @@ const Headers = () => {
 
               <li className="nav-item fw-semibold">
                 <NavLink
-                  to="/donation"
+                  to="/blogs"
                   className={({ isActive }) =>
                     isActive ? "nav-link active" : "nav-link default"
                   }
                 >
-                  Donation
+                  Blogs
                 </NavLink>
               </li>
             </ul>
