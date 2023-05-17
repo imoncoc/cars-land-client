@@ -1,0 +1,11 @@
+
+.footer-bg{
+    height: calc(100vh);
+        background: url("https://i.ibb.co/PxkDLtx/404.jpg") center/cover fixed no-repeat;
+    object-fit: cover;
+}
+
+.error-bg-text{
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+}
