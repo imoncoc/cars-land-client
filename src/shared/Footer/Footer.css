@@ -1,0 +1,55 @@
+.bg-footer {
+    background-color: var(--color-mainBlack);
+    color: var(--color-pink-light);
+}
+
+.footer-logo {
+    font-family: var(--font-rajdhani);
+}
+
+.footer-logo-description {
+    font-family: var(--font-open-sans)
+}
+
+.footer-follow {
+    font-family: var(--font-rajdhani);
+}
+
+.footer-icon {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 8px 12px;
+    border-radius: 2px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.footer-icon-twitter:hover {
+    background-color: var(--color-mainBlue);
+    scale: 1.05;
+}
+
+.footer-icon-facebook:hover {
+    background-color: var(--color-mainBlue);
+    scale: 1.05;
+}
+
+.footer-icon-instagram:hover {
+    background-color: var(--color-red-light);
+    scale: 1.05;
+}
+
+.footer-products {
+    font-family: var(--font-rajdhani);
+}
+
+.footer-product-items {
+    font-family: var(--font-open-sans);
+}
+
+.footer-input:focus {
+    color: var(--color-pink-light);
+}
+
+.footer-signup-button {
+    background-color: var(--color-mainBlue);
+}

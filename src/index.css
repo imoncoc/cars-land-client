@@ -6,6 +6,14 @@
   --mainBlack: #292F36;
   --mainGrey: rgba(216, 214, 214);
   --mainYellow: #e3b505;
+
+
+  --color-mainBlack: #040F16;
+    --color-pink-light: #FBECEB;
+    --color-mainBlue: #2554D7;
+    --color-red-light: #D47969;
+    --color-grey: #7B7D88;
+    --color-sky-light: #53D3D1;
 }
 
 * {
