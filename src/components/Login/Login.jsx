@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -73,12 +73,14 @@ const Login = () => {
                     /> */}
                       {showPassword ? (
                         <FontAwesomeIcon
+                          
                           icon={faEye}
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword(!showPassword)}
                         />
                       ) : (
                         <FontAwesomeIcon
+                          
                           style={{ cursor: "pointer" }}
                           icon={faEyeSlash}
                           onClick={() => setShowPassword(!showPassword)}
@@ -99,7 +101,7 @@ const Login = () => {
                       to="/register"
                       className="link-opacity-75-hover text-info"
                     >
-                      Register
+                      Please Register
                     </Link>
                   </p>
                 </div>
@@ -126,7 +128,7 @@ const Login = () => {
                   <FontAwesomeIcon
                     style={{ cursor: "pointer" }}
                     icon={faGithub}
-                    className='text-white'
+                    className="text-white"
                   />
                 </div>
               </div>

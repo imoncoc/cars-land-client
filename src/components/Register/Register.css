@@ -1,0 +1,16 @@
+.login-bg {
+    background: #344a72;
+}
+
+.login-btn {
+    /* background: #49c1a2; */
+    background: var(--mainBlue);
+    color: #fff;
+}
+
+.login-btn:hover {
+    background: var(--transparentBlue);
+    color: #fff;
+}
+
+
