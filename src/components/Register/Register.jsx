@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Register.css'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { Link, useLocation, useNavigate, useNavigation } from "react-router-dom";
+import { AuthContext } from '../../providers/AuthProviders';
+import Swal from "sweetalert2";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
      const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+     const { createUser, auth, setPreloader } = useContext(AuthContext);
+     const navigate = useNavigate();
+     const location = useLocation();
+     const from = location.state?.from?.pathname || "/";
 
     const {
       register,
@@ -20,8 +26,28 @@ const Register = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-      const { email, password, name, confirmPassword } = data;
+      const { email, password, name, confirmPassword, photoUrl } = data;
       console.log(data);
+      createUser(email, password)
+        .then((result) => {
+          const createdUser = result.user;
+          // console.log(createdUser);
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photoUrl,
+          });
+          Swal.fire(
+            "Success!",
+            "Successfully Register into account!",
+            "success"
+          );
+          reset();
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          // console.log(error)
+          Swal.fire("Oops...!", `${error.message}`, "error");
+        });
     };
 
 
