@@ -3,15 +3,19 @@ import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { signIn, signInWithGoogle, signInWithGithub, setPreloader } =
+    const { signIn, signInWithGoogle, signInWithGithub } =
       useContext(AuthContext);
+      const navigate = useNavigate();
+      const location = useLocation();
+      const from = location.state?.from?.pathname || "/";
+
     const {
       register,
       formState: { errors },
