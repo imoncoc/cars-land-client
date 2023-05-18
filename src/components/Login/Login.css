@@ -1,0 +1,43 @@
+.login-bg{
+    background: #344a72;
+}
+
+.login-btn{
+    /* background: #49c1a2; */
+    background: var(--mainBlue);
+        color: #fff;
+}
+.login-btn:hover {
+    background: var(--transparentBlue);
+        color: #fff;
+}
+
+
+.or-divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.or-divider:before,
+.or-divider:after {
+    content: "";
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    top: 50%;
+    width: 40%;
+}
+
+.or-divider:before {
+    left: 0;
+}
+
+.or-divider:after {
+    right: 0;
+}
+
+
+.bg-icon{
+    padding: 8px 12px;
+}

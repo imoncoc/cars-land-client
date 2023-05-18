@@ -1,0 +1,16 @@
+.custom-tab-list {
+    background-color: #f1f1f1;
+}
+
+.custom-tab {
+    color: #333;
+    background-color: #ddd;
+}
+
+.custom-tab:hover {
+    background-color: #aaa;
+}
+
+.custom-tab.react-tabs__tab--selected {
+    background-color: #ccc;
+}

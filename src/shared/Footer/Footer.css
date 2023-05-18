@@ -57,3 +57,8 @@
 .footer-signup-button {
     background-color: var(--color-mainBlue);
 }
+
+
+.footer__link{
+    text-decoration: none;
+}

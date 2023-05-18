@@ -3,6 +3,7 @@ import './Footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -11,7 +12,11 @@ const Footer = () => {
           <div className="row mx-4">
             <div className="col-10 col-sm-6 col-md-4 col-lg-3 mx-auto my-5 text-center text-md-start">
               {/* <h3 className="footer-logo fs-1 fw-semibold">LOGO.</h3> */}
-              <img className='footer-logo' src={"https://i.ibb.co/DYJyys2/Cars-Land-logo.png"} alt="" />
+              <img
+                className="footer-logo"
+                src={"https://i.ibb.co/DYJyys2/Cars-Land-logo.png"}
+                alt=""
+              />
               <p className="footer-logo-description mb-5">
                 Be the first who learns about our great promotions!
               </p>
@@ -83,6 +88,24 @@ const Footer = () => {
                     Sign Up
                   </button>
                 </div>
+              </div>
+            </div>
+
+            <div className="col-10 mx-auto">
+              <div className="mb-5 text-center" style={{fontSize: "14px"}}>
+                <p className="text-white">
+                  Copyright ©
+                  {new Date().toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}{" "}
+                  All rights reserved by{" "}
+                  <Link href="" className="footer__link">
+                    <span className="">Md Imon Hossain.</span>
+                  </Link>{" "}
+                  For more information contact us with email.
+                </p>
               </div>
             </div>
           </div>
