@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { AuthContext } from '../../providers/AuthProviders';
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const { signIn, signInWithGoogle, signInWithGithub, setPreloader } =
+      useContext(AuthContext);
     const {
       register,
       formState: { errors },
@@ -19,7 +23,53 @@ const Login = () => {
     const onSubmit = (data) => {
         const { email, password } = data;
         console.log(email, password);
+
+        signIn(email, password)
+          .then((result) => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            Swal.fire(
+              "Success!",
+              "Successfully Login into account!",
+              "success"
+            );
+            reset();
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            // console.log(error)
+            Swal.fire("Oops...!", `${error.message}`, "error");
+          });
     }
+
+    const handleGoogleSignIn = () => {
+      signInWithGoogle()
+        .then((result) => {
+          const loggedUser = result.user;
+          // console.log(loggedUser);
+          Swal.fire("Success!", "Successfully Login with Google!", "success");
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          // console.log(error)
+          Swal.fire("Oops...!", `${error.message}`, "error");
+        });
+    };
+
+
+    const handleGithubSignIn = () => {
+      signInWithGithub()
+        .then((result) => {
+          const loggedUser = result.user;
+          // console.log(loggedUser)
+          Swal.fire("Success!", "Successfully Login with Github!", "success");
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          // console.log(error);
+          Swal.fire("Oops...!", `${error.message}`, "error");
+        });
+    };
 
 
 
@@ -73,14 +123,12 @@ const Login = () => {
                     /> */}
                       {showPassword ? (
                         <FontAwesomeIcon
-                          
                           icon={faEye}
                           style={{ cursor: "pointer" }}
                           onClick={() => setShowPassword(!showPassword)}
                         />
                       ) : (
                         <FontAwesomeIcon
-                          
                           style={{ cursor: "pointer" }}
                           icon={faEyeSlash}
                           onClick={() => setShowPassword(!showPassword)}
@@ -121,6 +169,7 @@ const Login = () => {
                   <FontAwesomeIcon
                     style={{ cursor: "pointer" }}
                     icon={faGoogle}
+                    onClick={handleGoogleSignIn}
                     className="text-white"
                   />
                 </div>
@@ -128,6 +177,7 @@ const Login = () => {
                   <FontAwesomeIcon
                     style={{ cursor: "pointer" }}
                     icon={faGithub}
+                    onClick={handleGoogleSignIn}
                     className="text-white"
                   />
                 </div>

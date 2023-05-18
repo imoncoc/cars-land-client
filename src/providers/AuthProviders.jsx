@@ -16,7 +16,7 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-const AuthProviders = () => {
+const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [preloader, setPreloader] = useState(true);
