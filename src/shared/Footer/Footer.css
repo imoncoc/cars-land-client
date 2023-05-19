@@ -28,12 +28,12 @@
 }
 
 .footer-icon-twitter:hover {
-    background-color: var(--color-mainBlue);
+    background-color: var(--color-main-o-Blue);
     scale: 1.05;
 }
 
 .footer-icon-facebook:hover {
-    background-color: var(--color-mainBlue);
+    background-color: var(--color-main-o-Blue);
     scale: 1.05;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .footer-signup-button {
-    background-color: var(--color-mainBlue);
+    background-color: var(--color-main-o-Blue);
 }
 
 

@@ -4,6 +4,7 @@ import { faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SectionTabs from '../SectionTabs/SectionTabs';
 import WhyChooseCarsLand from '../WhyChooseCarsLand/WhyChooseCarsLand';
+import NewCarArrive from '../NewCarArrive/NewCarArrive';
 
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
 
         <WhyChooseCarsLand></WhyChooseCarsLand>
        <SectionTabs></SectionTabs>
+       <NewCarArrive></NewCarArrive>
       </>
     );
 };
