@@ -59,6 +59,17 @@ const Headers = () => {
                   All-Toys
                 </NavLink>
               </li>
+
+              <li className="nav-item fw-semibold">
+                <NavLink
+                  to="/my-toys"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link default"
+                  }
+                >
+                  My-Toys
+                </NavLink>
+              </li>
               <li className="nav-item fw-semibold">
                 <NavLink
                   to="/add-toys"
