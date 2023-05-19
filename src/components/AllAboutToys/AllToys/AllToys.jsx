@@ -38,15 +38,19 @@ const AllToys = () => {
 
         <div className="container">
           <div className="row">
-            <div class="col d-flex flex-wrap text-uppercase justify-content-center my-5">
-              <h1 class="fw-bold align-self-center mx-1">Our</h1>
-              <h1 class="section-title--special">cars collection</h1>
+            <div className="col d-flex flex-wrap text-uppercase justify-content-center my-5">
+              <h1 className="fw-bold align-self-center mx-1">Our Toys</h1>
+              <h1 className="section-title--special">cars collection</h1>
             </div>
-
-            {
-                allToys && allToys.map((toy) => <SingleToy></SingleToy>)
-            }
           </div>
+        </div>
+
+        <div className="container">
+            <div className="row">
+                {
+                    allToys && allToys.map((toy) => <SingleToy toy={toy} key={toy._id}></SingleToy>)
+                }
+            </div>
         </div>
       </>
     );
