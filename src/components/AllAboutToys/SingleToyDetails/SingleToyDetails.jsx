@@ -27,9 +27,9 @@ const SingleToyDetails = () => {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-10 col-md-6 mx-auto my-5 p-5 shadow">
+          <div className="col-10 col-md-6 mx-auto my-5 p-5 shadow d-flex justify-content-between align-items-center">
             <img
-              className="img-fluid img-thumbnail rounded"
+              className="img-fluid img-thumbnail rounded mx-auto"
               src={photoUrl}
               alt=""
             />

@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './UpdateToys.css'
 import { useForm } from 'react-hook-form';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const UpdateToys = () => {
     const [toys, SetToys] = useState();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || "/";
+    console.log(from)
     const toy = useLoaderData();
     const {
       _id,
@@ -31,7 +36,7 @@ const UpdateToys = () => {
     const onSubmit = (updateToys) => {
       const { email, password } = updateToys;
       console.log(updateToys);
-      fetch(`http://localhost:5000/${_id}`, {
+      fetch(`http://localhost:5000/toy/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -41,16 +46,24 @@ const UpdateToys = () => {
       .then((res)=> res.json())
       .then((data)=> {
         console.log(data)
-        if (data.modifiedCount > 0) {
-              Swal.fire({
-                title: "Success!",
-                text: "Toys Updated Successfully",
-                icon: "success",
-                confirmButtonText: "Cool",
-              });
-            }
+        if (data.modifiedCount > 0 || data.acknowledged === true) {
+          Swal.fire({
+            title: "Success!",
+            text: "Toys Updated Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate(from,{ replace: true})
+        }
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              title: "Error!",
+              text: "Something is wrong",
+              icon: "error",
+            });
+          });
       }
 
 
@@ -75,7 +88,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="name"
-                        value={name}
+                        defaultValue={name}
                         placeholder="Enter Your Name"
                         {...register("name")}
                       />
@@ -88,7 +101,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="sellerName"
-                        value={sellerName}
+                        defaultValue={sellerName}
                         placeholder="Seller Name"
                         {...register("sellerName", {
                           required: "required",
@@ -103,7 +116,7 @@ const UpdateToys = () => {
                         type="email"
                         className="form-control"
                         id="sellerEmail"
-                        value={sellerEmail}
+                        defaultValue={sellerEmail}
                         placeholder="Seller Email"
                         {...register("sellerEmail", {
                           required: "required",
@@ -118,7 +131,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="photoUrl"
-                        value={photoUrl}
+                        defaultValue={photoUrl}
                         placeholder="Photo URl"
                         {...register("photoUrl", {
                           required: "required",
@@ -135,11 +148,11 @@ const UpdateToys = () => {
                         className="form-select"
                         {...register("subCategory")}
                       >
-                        <option value={subCategory}>{subCategory}</option>
+                        <option defaultChecked={subCategory}>{subCategory}</option>
                         <option>Sports</option>
                         <option value="truck">Truck</option>
                         <option value="regular">Regular</option>
-                        <option value="fireTruck">Mini Fire Truck</option>
+                        <option value="mini fire Truck">Mini Fire Truck</option>
                         <option value="police">Police</option>
                       </select>
                       
@@ -152,7 +165,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="price"
-                        value={price}
+                        defaultValue={price}
                         placeholder="Price"
                         {...register("price", {
                           required: "required",
@@ -185,7 +198,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="quantity"
-                        value={quantity}
+                        defaultValue={quantity}
                         placeholder="Available quantity"
                         {...register("quantity", {
                           required: "required",
@@ -201,7 +214,7 @@ const UpdateToys = () => {
                         type="text"
                         className="form-control"
                         id="details"
-                        value={details}
+                        defaultValue={details}
                         placeholder="Toy Details"
                         {...register("details", {
                           required: "required",

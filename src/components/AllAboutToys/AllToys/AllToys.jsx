@@ -47,8 +47,8 @@ const AllToys = () => {
 
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 mx-auto my-5">
-              <table className="table shadow table-hover text-center">
+            <div className="col-11 mx-auto my-5 table-responsive">
+              <table className="table  shadow table-hover text-center">
                 <thead>
                   <tr>
                     <th scope="col">PhotoUrl</th>

@@ -69,8 +69,8 @@ const MyToys = () => {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-12 mx-auto my-5">
-            <table className="table shadow table-hover text-center">
+          <div className="col-12 mx-auto my-5 table-responsive">
+            <table className="table  shadow table-hover text-center">
               <thead>
                 <tr>
                   <th scope="col">PhotoUrl</th>
@@ -96,7 +96,10 @@ const MyToys = () => {
                             <FontAwesomeIcon icon={faPen} />
                           </button>
                         </Link>
-                        <button className="btn btn-danger" onClick={()=> handleDeleteToy(toy._id)}>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDeleteToy(toy._id)}
+                        >
                           <FontAwesomeIcon icon={faX} />
                         </button>
                       </td>
