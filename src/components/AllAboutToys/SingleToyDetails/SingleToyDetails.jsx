@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SingleToyDetails.css'
 import { Link, useLoaderData } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { Rating } from '@smastrom/react-rating';
+import "@smastrom/react-rating/style.css";
 
 const SingleToyDetails = () => {
+  
     const toy = useLoaderData();
     const {_id, name, details, photoUrl, price, quantity, rating, sellerEmail, sellerName, subCategory} = toy;
+    const [ratings, setRatings] = useState(parseFloat(rating));
+    console.log(typeof ratings)
 
     const handleBuyNow = () => {
         Swal.fire({
@@ -32,7 +37,10 @@ const SingleToyDetails = () => {
           <div className="col-10 col-md-6 mx-auto my-5 p-5 d-flex align-items-center justify-content-center shadow">
             <div>
               <h3>{name}</h3>
-              <p>star</p>
+              <div className="d-flex mb-2">
+                <Rating style={{ maxWidth: 120 }} value={ratings} readOnly />
+                <span className="ms-2">{ratings}</span>
+              </div>
               <p> Seller: {sellerName} </p>
               <p>Email: {sellerEmail}</p>
               <p> Quantity: {quantity} items available </p>
