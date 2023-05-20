@@ -3,6 +3,7 @@ import './MyToys.css'
 import { AuthContext } from '../../../providers/AuthProviders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faX } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
@@ -55,9 +56,11 @@ const MyToys = () => {
                       <td>{toy.name}</td>
                       <td>{toy.subCategory} Toys</td>
                       <td className="text-center">
-                        <button className="btn btn-secondary me-2">
-                          <FontAwesomeIcon icon={faPen} />
-                        </button>
+                        <Link to={`/update-toys/${toy._id}`}>
+                          <button className="btn btn-secondary me-2">
+                            <FontAwesomeIcon icon={faPen} />
+                          </button>
+                        </Link>
                         <button className="btn btn-danger">
                           <FontAwesomeIcon icon={faX} />
                         </button>

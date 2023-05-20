@@ -2,7 +2,7 @@ import { faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import './AllToys.css'
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import SingleToy from '../SingleToy/SingleToy';
 
 const AllToys = () => {
@@ -45,13 +45,61 @@ const AllToys = () => {
           </div>
         </div>
 
-        <div className="container">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12 mx-auto my-5">
+              <table className="table shadow table-hover text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">PhotoUrl</th>
+                    <th scope="col">Toy Name</th>
+                    <th scope="col">Seller Name</th>
+                    <th scope="col">Sub-Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col" className="text-center">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allToys &&
+                    allToys.map((toy) => (
+                      <tr key={toy._id}>
+                        <th scope="row">
+                          <img
+                            className="table-img"
+                            src={toy?.photoUrl}
+                            alt=""
+                          />
+                        </th>
+                        <td>{toy?.name}</td>
+                        <td>{toy?.sellerName}</td>
+                        <td>{toy?.subCategory} Toys</td>
+                        <td>{toy?.quantity}</td>
+                        <td>${toy?.price}</td>
+                        <td className="text-center">
+                          <Link to={`/single-toy/${toy._id}`}>
+                            <button className="btn btn-info me-2">
+                              View Details
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="container">
             <div className="row">
                 {
                     allToys && allToys.map((toy) => <SingleToy toy={toy} key={toy._id}></SingleToy>)
                 }
             </div>
-        </div>
+        </div> */}
       </>
     );
 };
