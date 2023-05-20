@@ -4,6 +4,7 @@ import { AuthContext } from '../../../providers/AuthProviders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faX } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
@@ -29,6 +30,40 @@ const MyToys = () => {
         .then((data) => setMyToys(data))
         .catch((error) => console.log(error))
     }, [])
+
+     const handleDeleteToy = (_id) => {
+       console.log(_id);
+       Swal.fire({
+         title: "Are you sure?",
+         text: "You won't be able to revert this!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes, delete it!",
+       }).then((result) => {
+         if (result.isConfirmed) {
+           fetch(`http://localhost:5000/toy/${_id}`, {
+             method: "DELETE",
+           })
+             .then((res) => res.json())
+             .then((data) => {
+               console.log(data);
+               if (data.deletedCount > 0) {
+                 Swal.fire(
+                   "Deleted!",
+                   "Your Toys has been deleted.",
+                   "success"
+                 );
+                 const reamingToys = myToys.filter(
+                   (myToy) => myToy._id !== _id
+                 );
+                 setMyToys(reamingToys);
+               }
+             });
+         }
+       });
+     };
 
 
     return (
@@ -61,7 +96,7 @@ const MyToys = () => {
                             <FontAwesomeIcon icon={faPen} />
                           </button>
                         </Link>
-                        <button className="btn btn-danger">
+                        <button className="btn btn-danger" onClick={()=> handleDeleteToy(toy._id)}>
                           <FontAwesomeIcon icon={faX} />
                         </button>
                       </td>
