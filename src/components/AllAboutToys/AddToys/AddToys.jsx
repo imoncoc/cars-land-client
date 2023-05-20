@@ -25,32 +25,32 @@ const AddToys = () => {
     const onSubmit = (newToys) => {
       const { email, password } = newToys;
       console.log(newToys);
-      fetch(`http://localhost:5000/add-toys`, {
+      fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/add-toys`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(newToys)
+        body: JSON.stringify(newToys),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        if(data.acknowledged){
-          Swal.fire({
-            icon: "success",
-            title: "Successful",
-            text: "Successfully added chocolate!",
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            Swal.fire({
+              icon: "success",
+              title: "Successful",
+              text: "Successfully added chocolate!",
+            });
+            reset();
+          }
+        })
+        .catch((error) => {
+          Swal.error({
+            icon: "error",
+            title: "Oops!",
+            text: "Something is wrong!",
           });
-          reset();
-        }
-      })
-      .catch((error) => {
-        Swal.error({
-          icon: "error",
-          title: "Oops!",
-          text: "Something is wrong!",
         });
-      })
     };
 
 

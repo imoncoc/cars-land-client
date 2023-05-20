@@ -25,7 +25,7 @@ const SingleToy = ({toy}) => {
           <div className="card-body">
             <div className="car-info d-flex justify-content-between">
               <div className="car-text text-uppercase">
-                <h6 className="fw-bold">{name}</h6>
+                <h6 className="fw-bold" style={{height: "3rem"}}>{name}</h6>
                 <h6>
                   {" "}
                   <FontAwesomeIcon

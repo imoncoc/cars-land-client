@@ -54,3 +54,14 @@
     color: var(--mainBlue);
     opacity: 0.6;
 }
+
+.allToys-search{
+    transition: all 0.5s;
+}
+
+
+.allToys-search-icon {
+    background: var(--mainBlue);
+    color: #fff;
+    cursor: pointer;
+}

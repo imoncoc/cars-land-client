@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SectionTabs from '../SectionTabs/SectionTabs';
 import WhyChooseCarsLand from '../WhyChooseCarsLand/WhyChooseCarsLand';
 import NewCarArrive from '../NewCarArrive/NewCarArrive';
+import Gallery from '../Gallery/Gallery';
 
 
 const Home = () => {
@@ -18,12 +19,12 @@ const Home = () => {
                   the all new car toys
                 </h5>
                 <h2 className="tyext-uppercase my-2 title text-blue">
-                  2018 mercedes-benz
+                  New Coming Toys 
                 </h2>
-                <h3 className="text-uppercase">model name</h3>
+                <h3 className="text-uppercase"> all model found</h3>
                 <h6 className="text-capitalize">starts from</h6>
                 <h2>
-                  $60,000
+                  $2.99
                   <a href="" className="title-icon d-inline-block mx-2">
                     <FontAwesomeIcon icon={faCar} />
                   </a>
@@ -35,6 +36,7 @@ const Home = () => {
 
         <WhyChooseCarsLand></WhyChooseCarsLand>
        <SectionTabs></SectionTabs>
+       <Gallery></Gallery>
        <NewCarArrive></NewCarArrive>
       </>
     );

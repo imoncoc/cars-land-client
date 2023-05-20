@@ -37,13 +37,12 @@ const router = createBrowserRouter([
       },
       {
         path: "all-toys",
-        element: <AllToys></AllToys>,
-        loader: () => fetch("http://localhost:5000/allToys"),
+        element: <AllToys></AllToys>
       },
       {
         path: "single-toy/:id",
         element: <SingleToyDetails></SingleToyDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`),
+        loader: ({ params }) => fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/toy/${params.id}`),
       },
       {
         path: "my-toys",
@@ -68,7 +67,7 @@ const router = createBrowserRouter([
             <UpdateToys></UpdateToys>
           </PrivateRoutes>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`),
+        loader: ({ params }) => fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/toy/${params.id}`),
       },
     ],
   },

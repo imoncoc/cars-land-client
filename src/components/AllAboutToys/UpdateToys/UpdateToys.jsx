@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './UpdateToys.css'
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../providers/AuthProviders';
 
 const UpdateToys = () => {
+  const { user } = useContext(AuthContext)
     const [toys, SetToys] = useState();
     const location = useLocation();
     const navigate = useNavigate();
@@ -36,39 +38,38 @@ const UpdateToys = () => {
     const onSubmit = (updateToys) => {
       const { email, password } = updateToys;
       console.log(updateToys);
-      fetch(`http://localhost:5000/toy/${_id}`, {
+      fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/toy/${_id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(updateToys)
+        body: JSON.stringify(updateToys),
       })
-      .then((res)=> res.json())
-      .then((data)=> {
-        console.log(data)
-        if (data.modifiedCount > 0 || data.acknowledged === true) {
-          Swal.fire({
-            title: "Success!",
-            text: "Toys Updated Successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
-          navigate(from,{ replace: true})
-        }
-          })
-          .catch((error) => {
-            console.log(error);
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.modifiedCount > 0 || data.acknowledged === true) {
             Swal.fire({
-              title: "Error!",
-              text: "Something is wrong",
-              icon: "error",
+              title: "Success!",
+              text: "Toys Updated Successfully",
+              icon: "success",
+              confirmButtonText: "Cool",
             });
+            navigate(from, { replace: true });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            title: "Error!",
+            text: "Something is wrong",
+            icon: "error",
           });
+        });
       }
 
 
     return (
-        
       <section className="addToys-bg">
         <div className="container">
           <div className="row">
@@ -94,7 +95,11 @@ const UpdateToys = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-12  col-md-6 mx-auto">
+                  <div
+                    className={`col-12 col-md-6 mx-auto ${
+                      user?.displayName ? "d-none" : ""
+                    }`}
+                  >
                     <div className="mb-3">
                       <label className="form-label">Seller Name</label>
                       <input
@@ -109,7 +114,11 @@ const UpdateToys = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-12 col-md-6 mx-auto">
+                  <div
+                    className={`col-12 col-md-6 mx-auto ${
+                      user?.email ? "d-none" : ""
+                    }`}
+                  >
                     <div className="mb-3">
                       <label className="form-label">Seller email</label>
                       <input
@@ -139,7 +148,7 @@ const UpdateToys = () => {
                       />
                     </div>
                   </div>
-                
+
                   <div className="col-6 col-md-3 mx-auto">
                     <div className="mb-3">
                       <label className="form-label">Sub Category</label>
@@ -148,14 +157,15 @@ const UpdateToys = () => {
                         className="form-select"
                         {...register("subCategory")}
                       >
-                        <option defaultChecked={subCategory}>{subCategory}</option>
+                        <option defaultChecked={subCategory}>
+                          {subCategory}
+                        </option>
                         <option>Sports</option>
                         <option value="truck">Truck</option>
                         <option value="regular">Regular</option>
                         <option value="mini fire Truck">Mini Fire Truck</option>
                         <option value="police">Police</option>
                       </select>
-                      
                     </div>
                   </div>
                   <div className="col-6 col-md-3 mx-auto">
@@ -171,7 +181,6 @@ const UpdateToys = () => {
                           required: "required",
                         })}
                       />
-                      
                     </div>
                   </div>
                   <div className="col-6 col-md-3 mx-auto">
@@ -188,7 +197,6 @@ const UpdateToys = () => {
                         <option value="2">2</option>
                         <option value="1">1</option>
                       </select>
-                      
                     </div>
                   </div>
                   <div className="col-6 col-md-3 mx-auto">
@@ -204,7 +212,6 @@ const UpdateToys = () => {
                           required: "required",
                         })}
                       />
-                      
                     </div>
                   </div>
                   <div className="col-12 mx-auto">

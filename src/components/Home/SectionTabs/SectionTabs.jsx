@@ -18,7 +18,9 @@ const SectionTabs = () => {
       
     }
     useEffect(() => {
-      fetch(`http://localhost:5000/category/${selectedTab}`)
+      fetch(
+        `https://cars-land-assignment-11-imoncoc.vercel.app/category/${selectedTab}`
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

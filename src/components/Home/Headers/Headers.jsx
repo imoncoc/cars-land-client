@@ -120,7 +120,7 @@ const Headers = () => {
                   )}
                   <p className="user-email my-2 ms-1 fw-semibold">
                     {user.email ? (
-                      user.email
+                      <span>{user.email.substring(0, 20)}</span>
                     ) : (
                       <span style={{ fontSize: "0.8rem" }}>Mr/Mrs.</span>
                     )}
