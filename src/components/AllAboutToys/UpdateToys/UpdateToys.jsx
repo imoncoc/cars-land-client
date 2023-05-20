@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './UpdateToys.css'
 import { useForm } from 'react-hook-form';
 import { useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateToys = () => {
     const [toys, SetToys] = useState();
@@ -27,10 +28,30 @@ const UpdateToys = () => {
       reset,
     } = useForm();
 
-    const onSubmit = (data) => {
-      const { email, password } = data;
-      console.log(data);
-    };
+    const onSubmit = (updateToys) => {
+      const { email, password } = updateToys;
+      console.log(updateToys);
+      fetch(`http://localhost:5000/${_id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateToys)
+      })
+      .then((res)=> res.json())
+      .then((data)=> {
+        console.log(data)
+        if (data.modifiedCount > 0) {
+              Swal.fire({
+                title: "Success!",
+                text: "Toys Updated Successfully",
+                icon: "success",
+                confirmButtonText: "Cool",
+              });
+            }
+          })
+          .catch((error) => console.log(error));
+      }
 
 
     return (
@@ -56,9 +77,7 @@ const UpdateToys = () => {
                         id="name"
                         value={name}
                         placeholder="Enter Your Name"
-                        {...register("name", {
-                          required: "required",
-                        })}
+                        {...register("name")}
                       />
                     </div>
                   </div>

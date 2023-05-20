@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './AddToys.css'
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../providers/AuthProviders';
+import Swal from 'sweetalert2';
 
 const AddToys = () => {
     const { user } = useContext(AuthContext)
@@ -21,9 +22,35 @@ const AddToys = () => {
       },
     });
 
-    const onSubmit = (data) => {
-      const { email, password } = data;
-      console.log(data);
+    const onSubmit = (newToys) => {
+      const { email, password } = newToys;
+      console.log(newToys);
+      fetch(`http://localhost:5000/add-toys`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newToys)
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        if(data.acknowledged){
+          Swal.fire({
+            icon: "success",
+            title: "Successful",
+            text: "Successfully added chocolate!",
+          });
+          reset();
+        }
+      })
+      .catch((error) => {
+        Swal.error({
+          icon: "error",
+          title: "Oops!",
+          text: "Something is wrong!",
+        });
+      })
     };
 
 
@@ -48,12 +75,10 @@ const AddToys = () => {
                       <label className="form-label">Car Name</label>
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control`}
                         id="name"
-                        placeholder="Enter Your Name"
-                        {...register("name", {
-                          required: "required",
-                        })}
+                        placeholder="Enter Toys Name"
+                        {...register("name")}
                       />
                       {errors.name && (
                         <p role="alert" className="alert alert-danger my-2 p-2">
@@ -62,7 +87,11 @@ const AddToys = () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-12  col-md-6 mx-auto">
+                  <div
+                    className={`col-12 col-md-6 mx-auto ${
+                      user?.displayName ? "d-none" : ""
+                    }`}
+                  >
                     <div className="mb-3">
                       <label className="form-label">Seller Name</label>
                       <input
@@ -82,7 +111,11 @@ const AddToys = () => {
                       )}
                     </div>
                   </div>
-                  <div className="col-12 col-md-6 mx-auto">
+                  <div
+                    className={`col-12 col-md-6 mx-auto ${
+                      user?.email ? "d-none" : ""
+                    }`}
+                  >
                     <div className="mb-3">
                       <label className="form-label">Seller email</label>
                       <input
@@ -91,9 +124,7 @@ const AddToys = () => {
                         id="sellerEmail"
                         defaultValue={user?.email}
                         placeholder="Seller Email"
-                        {...register("sellerEmail", {
-                          required: "required",
-                        })}
+                        {...register("sellerEmail")}
                       />
                       {errors.sellerEmail && (
                         <p role="alert" className="alert alert-danger my-2 p-2">
