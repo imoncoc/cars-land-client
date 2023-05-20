@@ -1,94 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SectionTabs.css'
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import SingleToy from '../../AllAboutToys/SingleToy/SingleToy';
 
 const SectionTabs = () => {
-    const tabData = [
-      {
-        id: 1,
-        title: "The Simpsons",
-        nestedTabs: [
-          {
-            id: 11,
-            title: "Homer Simpson",
-            content: "Husband of Marge; father of Bart, Lisa, and Maggie.",
-            imageUrl:
-              "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Homer_Simpson_2006.png/212px-Homer_Simpson_2006.png",
-          },
-          {
-            id: 12,
-            title: "Marge Simpson",
-            content: "Wife of Homer; mother of Bart, Lisa, and Maggie.",
-            imageUrl:
-              "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/Marge_Simpson.png/220px-Marge_Simpson.png",
-          },
-          // Add more nested tabs for The Simpsons as needed
-        ],
-      },
-      {
-        id: 2,
-        title: "Futurama",
-        nestedTabs: [
-          {
-            id: 21,
-            title: "Philip J. Fry",
-            content:
-              "Protagonist, from the 20th Century. Delivery boy. Many times great-uncle to Professor Hubert Farnsworth. Suitor of Leela.",
-            imageUrl:
-              "https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Philip_Fry.png/175px-Philip_Fry.png",
-          },
-          {
-            id: 22,
-            title: "Turanga Leela",
-            content:
-              "Mutant cyclops. Captain of the Planet Express Ship. Love interest of Fry.",
-            imageUrl:
-              "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Turanga_Leela.png/150px-Turanga_Leela.png",
-          },
-          // Add more nested tabs for Futurama as needed
-        ],
-      },
-      // Add more top-level tabs as needed
-    ];
+    const [selectedTab, setSelectedTab] = useState("police");
+    const [subToys, setSubToys] = useState([]);
+    console.log(subToys)
+    console.log(selectedTab)
+    // const titles = ["police", "regular", "sports", "truck", "mini fire truck"];
+    const tabPanel = ["police", "regular", "sports", "truck", "mini fire truck"];
+    
+    const handleTabs = (title) => {
+      setSelectedTab(title)
+      console.log(title)
+      
+    }
+    useEffect(() => {
+      fetch(`http://localhost:5000/category/${selectedTab}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setSubToys(data);
+          console.log(selectedTab);
+        })
+        .catch((error) => console.log(error));
+    }, [selectedTab]);
+    
+
+
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 mx-auto my-5">
-            <Tabs forceRenderTabPanel defaultIndex={1}>
+      <>
+        <div className="container">
+          <div className="row" style={{marginTop: "10rem"}}>
+            <div className="col d-flex flex-wrap text-uppercase justify-content-center my-0">
+              <h1 className="fw-bold align-self-center mx-1">Shop By</h1>
+              <h1 className="section-title--special">Category</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="row my-5">
+            <Tabs>
               <TabList>
-                {tabData.map((tab) => (
-                  <Tab key={tab.id}>
-                    {tab.title}
-                  </Tab>
-                ))}
+                <Tab onClick={() => handleTabs("police")}>Police</Tab>
+                <Tab onClick={() => handleTabs("regular")}>Regular</Tab>
+                <Tab onClick={() => handleTabs("sports")}>Sports</Tab>
+                <Tab onClick={() => handleTabs("truck")}>Truck</Tab>
+                <Tab onClick={() => handleTabs("mini fire truck")}>
+                  Mini fire truck
+                </Tab>
               </TabList>
 
-              {tabData.map((tab) => (
-                <TabPanel key={tab.id}>
-                  <Tabs forceRenderTabPanel>
-                    <TabList>
-                      {tab.nestedTabs.map((nestedTab) => (
-                        <Tab key={nestedTab.id}>{nestedTab.title}</Tab>
+              {tabPanel &&
+                tabPanel.map((toy, index) => (
+                  <TabPanel key={index}>
+                    <div className="row my-5">
+                      {subToys.map((toy) => (
+                        <SingleToy toy={toy} key={toy._id}></SingleToy>
                       ))}
-                    </TabList>
-
-                    {tab.nestedTabs.map((nestedTab) => (
-                      <TabPanel key={nestedTab.id}>
-                        <div className="d-flex justify-content-center">
-                          <img src={nestedTab.imageUrl} alt={nestedTab.title} />
-                          <p>{nestedTab.content}</p>
-                        </div>
-                      </TabPanel>
-                    ))}
-                  </Tabs>
-                </TabPanel>
-              ))}
+                    </div>
+                  </TabPanel>
+                ))}
             </Tabs>
           </div>
         </div>
-      </div>
+      </>
     );
 };
 

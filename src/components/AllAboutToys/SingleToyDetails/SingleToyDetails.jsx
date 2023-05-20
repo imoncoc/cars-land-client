@@ -51,8 +51,18 @@ const SingleToyDetails = () => {
             </p>
           </div>
 
+          <div className="col-12 text-end mb-3">
+            <Link to="/">
+              <button className="btn btn-info">
+                <span className="me-2">
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </span>
+                Back to Home
+              </button>
+            </Link>
+          </div>
           <div className="col-12 text-end mb-5">
-            <Link to="/all-toys">
+            <Link to="/all-toys" className="">
               <button className="btn btn-warning">
                 <span className="me-2">
                   <FontAwesomeIcon icon={faArrowLeft} />

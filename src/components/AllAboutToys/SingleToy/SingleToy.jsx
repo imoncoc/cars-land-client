@@ -70,7 +70,7 @@ const SingleToy = ({toy}) => {
             </Link>
           </div>
         </div>
-      </div>
+       </div>
     );
 };
 
