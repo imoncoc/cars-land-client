@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProviders';
 
 const UpdateToys = () => {
+  useTitleHook("Update Toys");
   const { user } = useContext(AuthContext)
     const [toys, SetToys] = useState();
     const location = useLocation();

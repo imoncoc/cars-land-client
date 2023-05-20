@@ -6,8 +6,10 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 import { Rating } from '@smastrom/react-rating';
 import "@smastrom/react-rating/style.css";
+import useTitleHook from '../../../CustomHook/TitleHook';
 
 const SingleToyDetails = () => {
+  useTitleHook("Toys Details");
   
     const toy = useLoaderData();
     const {_id, name, details, photoUrl, price, quantity, rating, sellerEmail, sellerName, subCategory} = toy;

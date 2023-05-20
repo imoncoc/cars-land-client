@@ -6,9 +6,12 @@ import SectionTabs from '../SectionTabs/SectionTabs';
 import WhyChooseCarsLand from '../WhyChooseCarsLand/WhyChooseCarsLand';
 import NewCarArrive from '../NewCarArrive/NewCarArrive';
 import Gallery from '../Gallery/Gallery';
+import useTitleHook from '../../../CustomHook/TitleHook';
 
 
 const Home = () => {
+  useTitleHook("Home")
+
     return (
       <>
         <section className="header" id="header">

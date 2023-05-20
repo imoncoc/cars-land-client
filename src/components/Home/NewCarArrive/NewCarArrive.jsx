@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './NewCarArrive.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const NewCarArrive = () => {
+  const [randomData, setRandomData] = useState([])
+  useEffect(() => {
+    fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/randomData`)
+      .then((res) => res.json())
+      .then((data) => setRandomData(data))
+      .catch((error) => console.log(error));
+  }, [])
     return (
       <>
         <div className="container">
@@ -20,50 +27,24 @@ const NewCarArrive = () => {
             {/* <!-- Featured Info Start --> */}
             <div className="col-10 mx-auto col-lg-6 featured-info my-3">
               {/* <!-- Single Items Start --> */}
-              <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
-                <span className="featured-icon me-2">
-                  <FontAwesomeIcon icon={faCar} />
-                </span>
-                <h5 className="fw-bold mx-1">mercedes</h5>
-                <h5 className="mx-1">new model</h5>
-              </div>
-              {/* <!-- Single Items End -->
-           <!-- Single Items Start --> */}
-              <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
-                <span className="featured-icon me-2">
-                  <FontAwesomeIcon icon={faCar} />
-                </span>
-                <h5 className="fw-bold mx-1">mercedes</h5>
-                <h5 className="mx-1">new model</h5>
-              </div>
-              {/* <!-- Single Items End -->
-          <!-- Single Items Start --> */}
-              <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
-                <span className="featured-icon me-2">
-                  <FontAwesomeIcon icon={faCar} />
-                </span>
-                <h5 className="fw-bold mx-1">mercedes</h5>
-                <h5 className="mx-1">new model</h5>
-              </div>
-              {/* <!-- Single Items End -->
-           <!-- Single Items Start --> */}
-              <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
-                <span className="featured-icon me-2">
-                  <FontAwesomeIcon icon={faCar} />
-                </span>
-                <h5 className="fw-bold mx-1">mercedes</h5>
-                <h5 className="mx-1">new model</h5>
-              </div>
-              {/* <!-- Single Items End -->
-          <!-- Single Items Start --> */}
-              <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
-                <span className="featured-icon me-2">
-                  <FontAwesomeIcon icon={faCar} />
-                </span>
-                <h5 className="fw-bold mx-1">mercedes</h5>
-                <h5 className="mx-1">new model</h5>
-              </div>
-              {/* <!-- Single Items End --> */}
+              {randomData &&
+                randomData.map((data) => (
+                  <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
+                    <span className="featured-icon me-2">
+                      <img
+                        className="img-fluid new-car-arrive-img"
+                        src={data.photoUrl}
+                        alt=""
+                      />
+                    </span>
+                    <h5 className="fw-bold mx-1">
+                      {data.name.length > 25
+                        ? `${data.name.substring(0, 25)}...`
+                        : data.name}
+                    </h5>
+                    <h5 className="mx-1">new model</h5>
+                  </div>
+                ))}
             </div>
             {/* <!-- Featured Info End -->
           <!-- Featured Img Start --> */}

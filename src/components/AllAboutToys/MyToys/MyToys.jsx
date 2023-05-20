@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faX } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useTitleHook from '../../../CustomHook/TitleHook';
 
 const MyToys = () => {
+  useTitleHook("My Toys");
     const { user } = useContext(AuthContext)
     const [myToys, setMyToys] = useState();
     const navigate = useNavigate();

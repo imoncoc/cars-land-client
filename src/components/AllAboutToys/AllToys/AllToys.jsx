@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import "./AllToys.css";
 import { Link, useLoaderData } from "react-router-dom";
 import SingleToy from "../SingleToy/SingleToy";
+import useTitleHook from "../../../CustomHook/TitleHook";
 
 const AllToys = () => {
   // const allToys = useLoaderData();
+  useTitleHook("All Toys");
   const [allToys, setAllToys] = useState([]);
 
   const [searchText, setSearchText] = useState("allToys");
