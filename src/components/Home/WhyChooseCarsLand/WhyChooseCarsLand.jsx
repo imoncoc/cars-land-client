@@ -15,7 +15,7 @@ const WhyChooseCarsLand = () => {
           </div>
         </div>
 
-        <div className="container">
+        <div className="container" data-aos="fade-up">
           <div className="row">
             <div className="col-10 col-sm-6 col-md-4 col-lg-3 mx-auto shadow p-3">
               <div className=" d-flex justify-content-center align-items-center">

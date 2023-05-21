@@ -28,11 +28,19 @@ const NewCarArrive = () => {
         <div className="container">
           <div className="row">
             {/* <!-- Featured Info Start --> */}
-            <div className="col-10 mx-auto col-lg-6 featured-info my-3">
+            <div
+              className="col-10 mx-auto col-lg-6 featured-info my-3"
+              data-aos="fade-right"
+              data-aos-easing="linear"
+              data-aos-duration="1000"
+            >
               {/* <!-- Single Items Start --> */}
               {randomData &&
                 randomData.map((data) => (
-                  <div key={data._id} className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
+                  <div
+                    key={data._id}
+                    className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap"
+                  >
                     <span className="featured-icon me-2">
                       <img
                         className="img-fluid new-car-arrive-img"
@@ -51,7 +59,12 @@ const NewCarArrive = () => {
             </div>
             {/* <!-- Featured Info End -->
           <!-- Featured Img Start --> */}
-            <div className="col-10 mx-auto col-lg-6 featured-img my-3 align-self-center">
+            <div
+              className="col-10 mx-auto col-lg-6 featured-img my-3 align-self-center"
+              data-aos="fade-left"
+              data-aos-easing="linear"
+              data-aos-duration="1000"
+            >
               {/* <!-- Img Container --> */}
               <div className="img-container">
                 <img

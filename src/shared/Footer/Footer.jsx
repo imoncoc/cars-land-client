@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-      <section className="bg-footer">
+      <section className="bg-footer" data-aos="fade-up">
         <div className="container-fluid">
           <div className="row mx-4">
             <div className="col-10 col-sm-6 col-md-4 col-lg-3 mx-auto my-5 text-center text-md-start">
@@ -92,7 +92,7 @@ const Footer = () => {
             </div>
 
             <div className="col-10 mx-auto">
-              <div className="mb-5 text-center" style={{fontSize: "14px"}}>
+              <div className="mb-5 text-center" style={{ fontSize: "14px" }}>
                 <p className="text-white">
                   Copyright ©
                   {new Date().toLocaleDateString("en-US", {

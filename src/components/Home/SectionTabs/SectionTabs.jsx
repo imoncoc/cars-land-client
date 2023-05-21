@@ -39,39 +39,41 @@ const SectionTabs = () => {
 
     return (
       <>
-        <div className="container">
-          <div className="row" style={{marginTop: "10rem"}}>
-            <div className="col d-flex flex-wrap text-uppercase justify-content-center my-0">
-              <h1 className="fw-bold align-self-center mx-1">Shop By</h1>
-              <h1 className="section-title--special">Category</h1>
+        <div data-aos="fade-up">
+          <div className="container">
+            <div className="row" style={{ marginTop: "10rem" }}>
+              <div className="col d-flex flex-wrap text-uppercase justify-content-center my-0">
+                <h1 className="fw-bold align-self-center mx-1">Shop By</h1>
+                <h1 className="section-title--special">Category</h1>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="container">
-          <div className="row my-5">
-            <Tabs>
-              <TabList>
-                <Tab onClick={() => handleTabs("police")}>Police</Tab>
-                <Tab onClick={() => handleTabs("regular")}>Regular</Tab>
-                <Tab onClick={() => handleTabs("sports")}>Sports</Tab>
-                <Tab onClick={() => handleTabs("truck")}>Truck</Tab>
-                <Tab onClick={() => handleTabs("mini fire truck")}>
-                  Mini fire truck
-                </Tab>
-              </TabList>
+          <div className="container">
+            <div className="row my-5">
+              <Tabs>
+                <TabList>
+                  <Tab onClick={() => handleTabs("police")}>Police</Tab>
+                  <Tab onClick={() => handleTabs("regular")}>Regular</Tab>
+                  <Tab onClick={() => handleTabs("sports")}>Sports</Tab>
+                  <Tab onClick={() => handleTabs("truck")}>Truck</Tab>
+                  <Tab onClick={() => handleTabs("mini fire truck")}>
+                    Mini fire truck
+                  </Tab>
+                </TabList>
 
-              {tabPanel &&
-                tabPanel.map((toy, index) => (
-                  <TabPanel key={index}>
-                    <div className="row my-5">
-                      {subToys.map((toy) => (
-                        <SingleToy toy={toy} key={toy._id}></SingleToy>
-                      ))}
-                    </div>
-                  </TabPanel>
-                ))}
-            </Tabs>
+                {tabPanel &&
+                  tabPanel.map((toy, index) => (
+                    <TabPanel key={index}>
+                      <div className="row my-5">
+                        {subToys.map((toy) => (
+                          <SingleToy toy={toy} key={toy._id}></SingleToy>
+                        ))}
+                      </div>
+                    </TabPanel>
+                  ))}
+              </Tabs>
+            </div>
           </div>
         </div>
       </>

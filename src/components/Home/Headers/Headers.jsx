@@ -20,7 +20,7 @@ const Headers = () => {
 
 
     return (
-      <div>
+      <div data-aos="fade-up">
         <nav className="navbar navbar-expand-lg navbar-light px-5 py-3 ">
           <Link to="/" className="navbar-brand my-0 py-0">
             <img
