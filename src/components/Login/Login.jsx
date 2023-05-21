@@ -7,15 +7,14 @@ import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom'
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from "sweetalert2";
+import useTitleHook from '../../CustomHook/TitleHook';
 
 const Login = () => {
+  useTitleHook('Login')
     const [showPassword, setShowPassword] = useState(false);
-    const { signIn, signInWithGoogle, signInWithGithub, setPreloader } =
+    const { signIn, signInWithGoogle, signInWithGithub } =
       useContext(AuthContext);
-      const navigation = useNavigation();
-      if (navigation.state === "idle") {
-        setPreloader(false);
-      }
+      
       
       const navigate = useNavigate();
       const location = useLocation();

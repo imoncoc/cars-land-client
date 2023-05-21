@@ -1,5 +1,6 @@
 import React, {  useEffect, useState } from 'react';
 import './Gallery.css'
+import LazyLoad from 'react-lazy-load';
 
 const Gallery = () => {
   
@@ -41,11 +42,13 @@ const Gallery = () => {
                 >
                   <div className="gallery-single-item">
                     <div className="gallery-img-container">
-                      <img
-                        className="img-fluid img-thumbnail gallery-img gallery-store-img "
-                        src={gallery}
-                        alt=""
-                      />
+                      <LazyLoad height={"100%"}>
+                        <img
+                          className="img-fluid img-thumbnail gallery-img gallery-store-img "
+                          src={gallery}
+                          alt=""
+                        />
+                      </LazyLoad>
                     </div>
                   </div>
                 </div>

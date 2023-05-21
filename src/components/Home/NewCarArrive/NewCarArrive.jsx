@@ -2,6 +2,7 @@ import React, {  useEffect, useState } from 'react';
 import './NewCarArrive.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import LazyLoad from 'react-lazy-load';
 
 const NewCarArrive = () => {
  
@@ -67,11 +68,13 @@ const NewCarArrive = () => {
             >
               {/* <!-- Img Container --> */}
               <div className="img-container">
-                <img
-                  src={"https://i.ibb.co/xf0G71h/banner-02.jpg"}
-                  className="img-fluid featured-photo"
-                  alt=""
-                />
+                <LazyLoad height={"100%"}>
+                  <img
+                    src={"https://i.ibb.co/xf0G71h/banner-02.jpg"}
+                    className="img-fluid featured-photo"
+                    alt=""
+                  />
+                </LazyLoad>
                 <a href="#" className="featured-link">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </a>

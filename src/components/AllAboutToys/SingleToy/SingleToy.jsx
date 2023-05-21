@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating';
 import { AuthContext } from '../../../providers/AuthProviders';
 import Swal from 'sweetalert2';
+import LazyLoad from 'react-lazy-load';
 
 const SingleToy = ({toy}) => {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const SingleToy = ({toy}) => {
         Swal.fire({
           icon: "warning",
           title: "Oops!",
-          text: "You Have to Login First!",
+          text: "You Have to Login First to see details!",
         });
       }
     }
@@ -36,7 +37,9 @@ const SingleToy = ({toy}) => {
     return (
       <div className="col-10 mx-auto my-3 col-md-6 col-lg-4">
         <div className="card car-card overflow-hidden">
-          <img src={photoUrl} className="img-fluid car-img" alt="" />
+          <LazyLoad height={"100%"}>
+            <img src={photoUrl} className="img-fluid car-img" alt="" />
+          </LazyLoad>
 
           <div className="card-body">
             <div className="car-info d-flex justify-content-between">
@@ -56,11 +59,7 @@ const SingleToy = ({toy}) => {
 
               <div className="">
                 <div className="d-flex mb-2">
-                  <Rating
-                    style={{ maxWidth: 150 }}
-                    value={rating}
-                    readOnly
-                  />
+                  <Rating style={{ maxWidth: 150 }} value={rating} readOnly />
                   <span className="ms-2">{rating}</span>
                 </div>
                 <h5 className="car-value align-self-center py-2 px-3">

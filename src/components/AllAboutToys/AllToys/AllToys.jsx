@@ -6,9 +6,10 @@ import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import SingleToy from "../SingleToy/SingleToy";
 import useTitleHook from "../../../CustomHook/TitleHook";
 import { AuthContext } from "../../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const AllToys = () => {
-  
+  const { user } = useContext(AuthContext);
 
   // const allToys = useLoaderData();
   useTitleHook("All Toys");
@@ -33,6 +34,16 @@ const AllToys = () => {
      .then((res)=> res.json())
      .then((data) => setAllToys(data))
      .catch((error) => console.log(error))
+   };
+
+   const handleNavigation = () => {
+     if (!user) {
+       Swal.fire({
+         icon: "warning",
+         title: "Oops!",
+         text: "You Have to Login First to see details!",
+       });
+     }
    };
 
   //  const handleInputChange = (e) => {
@@ -130,7 +141,7 @@ const AllToys = () => {
                 {allToys &&
                   allToys.map((toy, i) => (
                     <tr key={toy._id}>
-                      <td>{i+1}.</td>
+                      <td>{i + 1}.</td>
                       <th scope="row">
                         <img className="table-img" src={toy?.photoUrl} alt="" />
                       </th>
@@ -140,7 +151,10 @@ const AllToys = () => {
                       <td>{toy?.quantity}</td>
                       <td>${toy?.price}</td>
                       <td className="text-center">
-                        <Link to={`/single-toy/${toy._id}`}>
+                        <Link
+                          to={`/single-toy/${toy._id}`}
+                          onClick={handleNavigation}
+                        >
                           <button className="btn btn-info me-2">
                             View Details
                           </button>

@@ -8,8 +8,10 @@ import { Link, useLocation, useNavigate, useNavigation } from "react-router-dom"
 import { AuthContext } from '../../providers/AuthProviders';
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
+import useTitleHook from '../../CustomHook/TitleHook';
 
 const Register = () => {
+  useTitleHook('Register')
     const [showPassword, setShowPassword] = useState(false);
      const [showConfirmPassword, setShowConfirmPassword] = useState(false);
      const { createUser, auth, setPreloader } = useContext(AuthContext);
