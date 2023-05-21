@@ -17,7 +17,14 @@ const Home = () => {
 
     return (
       <>
-        <section data-aos="fade-down" className="header" id="header">
+        <section
+          data-aos="fade-up"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+          data-aos-anchor=".other-element"
+          className="header"
+          id="header"
+        >
           <div className="container-fluid">
             <div className="row height-max align-items-center">
               <div className="col col-md-9 ms-auto text-end pe-5">

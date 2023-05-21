@@ -31,7 +31,8 @@ const NewCarArrive = () => {
             {/* <!-- Featured Info Start --> */}
             <div
               className="col-10 mx-auto col-lg-6 featured-info my-3"
-              data-aos="fade-right"
+              data-aos="fade-up"
+              data-aos-anchor=".other-element"
               data-aos-easing="linear"
               data-aos-duration="1000"
             >
@@ -62,7 +63,8 @@ const NewCarArrive = () => {
           <!-- Featured Img Start --> */}
             <div
               className="col-10 mx-auto col-lg-6 featured-img my-3 align-self-center"
-              data-aos="fade-left"
+              data-aos="fade-up"
+              data-aos-anchor=".other-element"
               data-aos-easing="linear"
               data-aos-duration="1000"
             >

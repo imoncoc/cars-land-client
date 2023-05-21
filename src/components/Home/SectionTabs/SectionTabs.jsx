@@ -34,7 +34,12 @@ const SectionTabs = () => {
 
     return (
       <>
-        <div data-aos="fade-up">
+        <div
+          data-aos="fade-up"
+          data-aos-anchor=".other-element"
+          data-aos-easing="linear"
+          data-aos-duration="1500"
+        >
           <div className="container">
             <div className="row" style={{ marginTop: "10rem" }}>
               <div className="col d-flex flex-wrap text-uppercase justify-content-center my-0">

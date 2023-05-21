@@ -60,26 +60,30 @@ const Headers = () => {
                 </NavLink>
               </li>
 
-              <li className="nav-item fw-semibold">
-                <NavLink
-                  to="/my-toys"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link default"
-                  }
-                >
-                  My-Toys
-                </NavLink>
-              </li>
-              <li className="nav-item fw-semibold">
-                <NavLink
-                  to="/add-toys"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link default"
-                  }
-                >
-                  Add-Toys
-                </NavLink>
-              </li>
+              {user && (
+                <>
+                  <li className="nav-item fw-semibold">
+                    <NavLink
+                      to="/my-toys"
+                      className={({ isActive }) =>
+                        isActive ? "nav-link active" : "nav-link default"
+                      }
+                    >
+                      My-Toys
+                    </NavLink>
+                  </li>
+                  <li className="nav-item fw-semibold">
+                    <NavLink
+                      to="/add-toys"
+                      className={({ isActive }) =>
+                        isActive ? "nav-link active" : "nav-link default"
+                      }
+                    >
+                      Add-Toys
+                    </NavLink>
+                  </li>
+                </>
+              )}
 
               <li className="nav-item fw-semibold">
                 <NavLink
@@ -120,7 +124,11 @@ const Headers = () => {
                   )}
                   <p className="user-email my-2 ms-1 fw-semibold">
                     {user.email ? (
-                      <span>{user.email.substring(0, 20)}</span>
+                      // <span>{user.email.substring(0, 20)}</span>
+                      <span>
+                        {user.email.substring(0, 3)}....
+                        {user.email.substring(user.email.length - 10)}
+                      </span>
                     ) : (
                       <span style={{ fontSize: "0.8rem" }}>Mr/Mrs.</span>
                     )}
