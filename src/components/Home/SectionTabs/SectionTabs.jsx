@@ -5,20 +5,16 @@ import "react-tabs/style/react-tabs.css";
 import SingleToy from '../../AllAboutToys/SingleToy/SingleToy'
 
 const SectionTabs = () => {
-  
-
-
     const [selectedTab, setSelectedTab] = useState("police");
     const [subToys, setSubToys] = useState([]);
-    console.log(subToys)
-    console.log(selectedTab)
+    // console.log(subToys)
+    // console.log(selectedTab)
     // const titles = ["police", "regular", "sports", "truck", "mini fire truck"];
     const tabPanel = ["police", "regular", "sports", "truck", "mini fire truck"];
     
     const handleTabs = (title) => {
       setSelectedTab(title)
-      console.log(title)
-      
+      // console.log(title)
     }
     useEffect(() => {
       fetch(
@@ -26,10 +22,9 @@ const SectionTabs = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setSubToys(data);
           // console.log(selectedTab);
-          setPreloader(false);
         })
         .catch((error) => console.log(error));
     }, [selectedTab]);

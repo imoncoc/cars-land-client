@@ -1,11 +1,11 @@
 import React from 'react';
 import './LoaderSpinner.css'
-import { Triangle } from "react-loader-spinner";
+import { RotatingSquare, Triangle } from "react-loader-spinner";
 
 const LoaderSpinner = () => {
     return (
       <div className="container">
-        <div className="row" style={{height: "100vh"}}>
+        <div className="row" style={{ height: "100vh" }}>
           <div className="col-10 mx-auto d-flex justify-content-center align-items-center">
             <Triangle
               height="80"
@@ -16,6 +16,17 @@ const LoaderSpinner = () => {
               wrapperClassName=""
               visible={true}
             />
+
+            {/* <RotatingSquare
+              height="100"
+              width="100"
+              color="#40ACF1"
+              ariaLabel="rotating-square-loading"
+              strokeWidth="4"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            /> */}
           </div>
         </div>
       </div>

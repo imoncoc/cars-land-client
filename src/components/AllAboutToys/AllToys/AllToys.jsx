@@ -7,14 +7,18 @@ import SingleToy from "../SingleToy/SingleToy";
 import useTitleHook from "../../../CustomHook/TitleHook";
 import { AuthContext } from "../../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import LoaderSpinner from "../../../shared/LoaderSpinner/LoaderSpinner";
 
 const AllToys = () => {
   const { user } = useContext(AuthContext);
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    <LoaderSpinner></LoaderSpinner>
+  }
 
   // const allToys = useLoaderData();
   useTitleHook("All Toys");
   const [allToys, setAllToys] = useState([]);
-
   const [searchText, setSearchText] = useState("allToys");
 
 
@@ -26,10 +30,10 @@ const AllToys = () => {
   }, []);
 
   
-  console.log(allToys);
+  // console.log(allToys);
 
    const handleSearch = () => {
-     console.log(searchText)
+    //  console.log(searchText)
      fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/getToysByText/${searchText}`)
      .then((res)=> res.json())
      .then((data) => setAllToys(data))

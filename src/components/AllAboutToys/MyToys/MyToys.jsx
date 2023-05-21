@@ -14,10 +14,10 @@ const MyToys = () => {
     const { user } = useContext(AuthContext)
     const [myToys, setMyToys] = useState();
     const navigate = useNavigate();
-    console.log(myToys)
+    // console.log(myToys)
     const [selectedOptions, setSelectedOptions] = useState('descending')
     const uri = `https://cars-land-assignment-11-imoncoc.vercel.app/getEmail?email=${user?.email}&type=${selectedOptions}`;
-    console.log("myToys", myToys)
+    // console.log("myToys", myToys)
 
     // const {
     //   _id,
@@ -74,7 +74,7 @@ const MyToys = () => {
            })
              .then((res) => res.json())
              .then((data) => {
-               console.log(data);
+              //  console.log(data);
                if (data.deletedCount > 0) {
                  Swal.fire(
                    "Deleted!",

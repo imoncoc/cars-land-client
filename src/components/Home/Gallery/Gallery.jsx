@@ -1,26 +1,38 @@
-import React, {  useEffect, useState } from 'react';
-import './Gallery.css'
-import LazyLoad from 'react-lazy-load';
+import React, { useEffect, useState } from "react";
+import "./Gallery.css";
+import LazyLoad from "react-lazy-load";
 
 const Gallery = () => {
-  
+  const [myGallery, setMyGallery] = useState([]);
+  // console.log(myGallery)
+  useEffect(() => {
+    fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/randomPhotoUrls`)
+      .then((res) => res.json())
+      .then((data) => {
+        setMyGallery(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-    const [myGallery, setMyGallery] = useState([])
-    // console.log(myGallery)
-    useEffect(()=> {
-        fetch(
-          `https://cars-land-assignment-11-imoncoc.vercel.app/randomPhotoUrls`
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            setMyGallery(data)
-          
-        })
-          .catch((error) => console.log(error));
-    }, [])
-    return (
-      <>
-        <div
+
+
+  const firstImageStyle = {
+    width: "100%",
+    height: "auto",
+    marginBottom: "10px",
+  };
+
+  const otherImageStyle = {
+    width: "100%",
+    height: "auto",
+    marginBottom: "10px",
+  };
+
+
+
+  return (
+    <>
+      <div
           className="container"
           data-aos="fade-up"
           data-aos-easing="linear"
@@ -55,8 +67,10 @@ const Gallery = () => {
               ))}
           </div>
         </div>
-      </>
-    );
+
+      
+    </>
+  );
 };
 
 export default Gallery;
