@@ -4,14 +4,16 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../providers/AuthProviders';
 import Swal from 'sweetalert2';
 import useTitleHook from '../../../CustomHook/TitleHook';
-import { useNavigation } from 'react-router-dom';
+import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
 
 const AddToys = () => {
   useTitleHook("Add Toys");
+  const navigate = useNavigate();
+
   
 
     const { user } = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
     const {
       register,
       formState: { errors },
@@ -29,7 +31,7 @@ const AddToys = () => {
 
     const onSubmit = (newToys) => {
       const { email, password } = newToys;
-      console.log(newToys);
+      // console.log(newToys);
       fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/add-toys`, {
         method: "POST",
         headers: {
@@ -39,7 +41,7 @@ const AddToys = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.acknowledged) {
             Swal.fire({
               icon: "success",
@@ -47,6 +49,7 @@ const AddToys = () => {
               text: "Successfully added chocolate!",
             });
             reset();
+            navigate('/my-toys')
           }
         })
         .catch((error) => {
