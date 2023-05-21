@@ -100,9 +100,7 @@ const AddToys = () => {
                     </div>
                   </div>
                   <div
-                    className={`col-12 col-md-6 mx-auto ${
-                      user?.displayName ? "d-none" : ""
-                    }`}
+                    className={`col-12 col-md-6 mx-auto`}
                   >
                     <div className="mb-3">
                       <label className="form-label">Seller Name</label>
@@ -124,9 +122,7 @@ const AddToys = () => {
                     </div>
                   </div>
                   <div
-                    className={`col-12 col-md-6 mx-auto ${
-                      user?.email ? "d-none" : ""
-                    }`}
+                    className={`col-12 col-md-6 mx-auto`}
                   >
                     <div className="mb-3">
                       <label className="form-label">Seller email</label>
