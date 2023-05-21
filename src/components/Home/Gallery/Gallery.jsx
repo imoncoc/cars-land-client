@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import './Gallery.css'
 
 const Gallery = () => {
+  
+
     const [myGallery, setMyGallery] = useState([])
-    console.log(myGallery)
+    // console.log(myGallery)
     useEffect(()=> {
         fetch(
           `https://cars-land-assignment-11-imoncoc.vercel.app/randomPhotoUrls`
         )
           .then((res) => res.json())
-          .then((data) => setMyGallery(data))
+          .then((data) => {
+            setMyGallery(data)
+          
+        })
           .catch((error) => console.log(error));
     }, [])
     return (
@@ -24,18 +29,23 @@ const Gallery = () => {
 
           <div className="row gallery-store-items">
             {myGallery &&
-              myGallery.map((gallery) => (
-                <div className="col-10 col-md-6 col-lg-4 col-xl-3 mx-auto my-3 mx-3 gallery-store-item">
-                  <div className='gallery-single-item'>
-                    <div className="gallery-img-container">
-                      <img
-                        className="img-fluid img-thumbnail gallery-img gallery-store-img "
-                        src={gallery}
-                        alt=""
-                      />
+              myGallery.map((gallery, i) => (
+                
+                  <div
+                    key={i}
+                    className="col-10 col-md-6 col-lg-4 col-xl-3 mx-auto my-3 mx-3 gallery-store-item"
+                  >
+                    <div className="gallery-single-item">
+                      <div className="gallery-img-container">
+                        <img
+                          className="img-fluid img-thumbnail gallery-img gallery-store-img "
+                          src={gallery}
+                          alt=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                
               ))}
           </div>
         </div>

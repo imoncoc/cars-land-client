@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import './NewCarArrive.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const NewCarArrive = () => {
+ 
+
   const [randomData, setRandomData] = useState([])
   useEffect(() => {
     fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/randomData`)
       .then((res) => res.json())
-      .then((data) => setRandomData(data))
+      .then((data) => {setRandomData(data)
+      })
       .catch((error) => console.log(error));
   }, [])
     return (
@@ -29,7 +32,7 @@ const NewCarArrive = () => {
               {/* <!-- Single Items Start --> */}
               {randomData &&
                 randomData.map((data) => (
-                  <div className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
+                  <div key={data._id} className="featured-item my-3 d-flex p-2 text-capitalize align-items-baseline flex-wrap">
                     <span className="featured-icon me-2">
                       <img
                         className="img-fluid new-car-arrive-img"

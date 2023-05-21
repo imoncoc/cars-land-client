@@ -41,7 +41,9 @@ const router = createBrowserRouter([
       },
       {
         path: "single-toy/:id",
-        element: <SingleToyDetails></SingleToyDetails>,
+        element: <PrivateRoutes>
+          <SingleToyDetails></SingleToyDetails>
+        </PrivateRoutes>,
         loader: ({ params }) => fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/toy/${params.id}`),
       },
       {

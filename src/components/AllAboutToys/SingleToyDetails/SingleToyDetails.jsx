@@ -11,6 +11,7 @@ import useTitleHook from '../../../CustomHook/TitleHook';
 const SingleToyDetails = () => {
   useTitleHook("Toys Details");
   
+  
     const toy = useLoaderData();
     const {_id, name, details, photoUrl, price, quantity, rating, sellerEmail, sellerName, subCategory} = toy;
     const [ratings, setRatings] = useState(parseFloat(rating));

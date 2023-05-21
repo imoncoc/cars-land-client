@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './UpdateToys.css'
 import { useForm } from 'react-hook-form';
-import { useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate, useNavigation, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProviders';
+import useTitleHook from '../../../CustomHook/TitleHook';
 
 const UpdateToys = () => {
   useTitleHook("Update Toys");
-  const { user } = useContext(AuthContext)
+  const { user, setPreloader } = useContext(AuthContext);
+  const navigation = useNavigation();
+  if (navigation.state === "idle") {
+    setPreloader(false);
+  }
+
     const [toys, SetToys] = useState();
     const location = useLocation();
     const navigate = useNavigate();

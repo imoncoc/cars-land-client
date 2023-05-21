@@ -7,9 +7,9 @@ import router from './routes/Routes.jsx';
 import AuthProviders from './providers/AuthProviders.jsx';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
     <AuthProviders>
+  <React.StrictMode>
       <RouterProvider router={router} />
-    </AuthProviders>
   </React.StrictMode>
+    </AuthProviders>
 );

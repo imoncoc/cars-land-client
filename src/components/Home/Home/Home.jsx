@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Home.css'
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,10 +7,13 @@ import WhyChooseCarsLand from '../WhyChooseCarsLand/WhyChooseCarsLand';
 import NewCarArrive from '../NewCarArrive/NewCarArrive';
 import Gallery from '../Gallery/Gallery';
 import useTitleHook from '../../../CustomHook/TitleHook';
+import { useNavigation } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProviders';
 
 
 const Home = () => {
   useTitleHook("Home")
+  
 
     return (
       <>
@@ -21,7 +24,7 @@ const Home = () => {
                 <h5 className="title-heading d-inline-block p-2 text-uppercase">
                   the all new car toys
                 </h5>
-                <h2 className="tyext-uppercase my-2 title text-blue">
+                <h2 className="text-uppercase my-2 title text-blue">
                   New Coming Toys 
                 </h2>
                 <h3 className="text-uppercase"> all model found</h3>

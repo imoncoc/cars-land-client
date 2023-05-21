@@ -10,8 +10,13 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { signIn, signInWithGoogle, signInWithGithub } =
+    const { signIn, signInWithGoogle, signInWithGithub, setPreloader } =
       useContext(AuthContext);
+      const navigation = useNavigation();
+      if (navigation.state === "idle") {
+        setPreloader(false);
+      }
+      
       const navigate = useNavigate();
       const location = useLocation();
       const from = location.state?.from?.pathname || "/";

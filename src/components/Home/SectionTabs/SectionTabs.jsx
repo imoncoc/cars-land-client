@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import './SectionTabs.css'
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import SingleToy from '../../AllAboutToys/SingleToy/SingleToy';
+import SingleToy from '../../AllAboutToys/SingleToy/SingleToy'
 
 const SectionTabs = () => {
+  
+
+
     const [selectedTab, setSelectedTab] = useState("police");
     const [subToys, setSubToys] = useState([]);
     console.log(subToys)
@@ -25,7 +28,8 @@ const SectionTabs = () => {
         .then((data) => {
           console.log(data);
           setSubToys(data);
-          console.log(selectedTab);
+          // console.log(selectedTab);
+          setPreloader(false);
         })
         .catch((error) => console.log(error));
     }, [selectedTab]);

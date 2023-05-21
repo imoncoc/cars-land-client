@@ -1,12 +1,15 @@
 import { faCar, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AllToys.css";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import SingleToy from "../SingleToy/SingleToy";
 import useTitleHook from "../../../CustomHook/TitleHook";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const AllToys = () => {
+  
+
   // const allToys = useLoaderData();
   useTitleHook("All Toys");
   const [allToys, setAllToys] = useState([]);

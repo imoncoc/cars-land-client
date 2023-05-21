@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useTitleHook from '../../CustomHook/TitleHook';
+import { AuthContext } from '../../providers/AuthProviders';
+import { useNavigation } from 'react-router-dom';
 
 const Blogs = () => {
     useTitleHook("Blogs");
+    const { setPreloader } = useContext(AuthContext);
+    const navigation = useNavigation();
+    if (navigation.state === "idle") {
+      setPreloader(false);
+    }
+
     return (
       <>
         <div className="container">
