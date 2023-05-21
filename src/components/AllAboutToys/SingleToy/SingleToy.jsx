@@ -21,6 +21,8 @@ const SingleToy = ({toy}) => {
       _id
     } = toy;
 
+    
+
     const handleNavigation = () => {
       if(!user){
         Swal.fire({
@@ -52,9 +54,13 @@ const SingleToy = ({toy}) => {
                 </h6>
               </div>
 
-              <div className=''>
+              <div className="">
                 <div className="d-flex mb-2">
-                  <Rating style={{ maxWidth: 120 }} value={rating} readOnly />
+                  <Rating
+                    style={{ maxWidth: 150 }}
+                    value={rating}
+                    readOnly
+                  />
                   <span className="ms-2">{rating}</span>
                 </div>
                 <h5 className="car-value align-self-center py-2 px-3">

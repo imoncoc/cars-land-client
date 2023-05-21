@@ -39,6 +39,19 @@ const AllToys = () => {
   //    setSearchText(e.target.value);
   //  };
 
+
+  if (allToys === undefined || allToys.length == 0) {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-10 mx-auto my-5">
+            <h2 className="text-center text-info">User Has No Data To Show!</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <section className="all-toys-bg" id="">

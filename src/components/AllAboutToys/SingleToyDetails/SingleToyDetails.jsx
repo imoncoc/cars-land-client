@@ -4,7 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
-import { Rating } from '@smastrom/react-rating';
+import { Rating, Star, ThinStar } from '@smastrom/react-rating';
 import "@smastrom/react-rating/style.css";
 import useTitleHook from '../../../CustomHook/TitleHook';
 
@@ -15,7 +15,12 @@ const SingleToyDetails = () => {
     const toy = useLoaderData();
     const {_id, name, details, photoUrl, price, quantity, rating, sellerEmail, sellerName, subCategory} = toy;
     const [ratings, setRatings] = useState(parseFloat(rating));
-    console.log(typeof ratings)
+    // console.log(typeof ratings)
+    const myStyles = {
+      itemShapes: ThinStar,
+      activeFillColor: "#40ACF1",
+      inactiveFillColor: "rgba(64, 172, 241, 0.4)",
+    };
 
     const handleBuyNow = () => {
         Swal.fire({
@@ -41,7 +46,12 @@ const SingleToyDetails = () => {
             <div>
               <h3>{name}</h3>
               <div className="d-flex mb-2">
-                <Rating style={{ maxWidth: 120 }} value={ratings} readOnly />
+                <Rating
+                  style={{ maxWidth: 120 }}
+                  value={ratings}
+                  itemStyles={myStyles}
+                  readOnly
+                />
                 <span className="ms-2">{ratings}</span>
               </div>
               <p> Seller: {sellerName} </p>
