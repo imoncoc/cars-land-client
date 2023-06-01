@@ -13,7 +13,7 @@ const AllToys = () => {
   const { user } = useContext(AuthContext);
   const navigation = useNavigation();
   if (navigation.state === "loading") {
-    <LoaderSpinner></LoaderSpinner>
+    <LoaderSpinner></LoaderSpinner>;
   }
 
   // const allToys = useLoaderData();
@@ -21,39 +21,88 @@ const AllToys = () => {
   const [allToys, setAllToys] = useState([]);
   const [searchText, setSearchText] = useState("allToys");
 
+  // useEffect(() => {
+  //   fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/${searchText}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAllToys(data))
+  //     .catch((error) => console.log(error));
+  // }, []);
 
-  useEffect(() => {
-    fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/${searchText}`)
+  // console.log(allToys);
+
+  const handleSearch = () => {
+    //  console.log(searchText)
+    fetch(
+      `https://cars-land-assignment-11-imoncoc.vercel.app/getToysByText/${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => setAllToys(data))
       .catch((error) => console.log(error));
-  }, []);
+  };
 
-  
-  // console.log(allToys);
-
-   const handleSearch = () => {
-    //  console.log(searchText)
-     fetch(`https://cars-land-assignment-11-imoncoc.vercel.app/getToysByText/${searchText}`)
-     .then((res)=> res.json())
-     .then((data) => setAllToys(data))
-     .catch((error) => console.log(error))
-   };
-
-   const handleNavigation = () => {
-     if (!user) {
-       Swal.fire({
-         icon: "warning",
-         title: "Oops!",
-         text: "You Have to Login First to see details!",
-       });
-     }
-   };
+  const handleNavigation = () => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops!",
+        text: "You Have to Login First to see details!",
+      });
+    }
+  };
 
   //  const handleInputChange = (e) => {
   //    setSearchText(e.target.value);
   //  };
 
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalToys, setTotalToys] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const totalPages = Math.ceil(totalToys / itemsPerPage);
+  // console.log(currentPage);
+  // console.log(totalToys);
+  // console.log(totalPages);
+  //  console.log(itemsPerPage)
+  const pageNumbers = [...Array(totalPages).keys()];
+  // console.log(pageNumbers);
+
+  useEffect(() => {
+    fetch("https://cars-land-assignment-11-imoncoc.vercel.app/totalToys")
+      .then((res) => res.json())
+      .then((data) => {
+        setTotalToys(data.totalProducts);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      `https://cars-land-assignment-11-imoncoc.vercel.app/totalAllToys?page=${currentPage}&limit=${itemsPerPage}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setAllToys(data);
+      })
+      .catch((err) => console.log(err));
+  }, [currentPage, itemsPerPage]);
+
+  const options = [5, 10, 15];
+  function handleSelectChange(event) {
+    setItemsPerPage(parseInt(event.target.value));
+    setCurrentPage(0);
+  }
+
+  const handlePreviousClick = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   if (allToys === undefined || allToys.length == 0) {
     return (
@@ -91,7 +140,6 @@ const AllToys = () => {
           </div>
         </div>
       </section>
-
       <div className="container">
         <div className="row">
           <div className="col d-flex flex-wrap text-uppercase justify-content-center my-5">
@@ -100,7 +148,6 @@ const AllToys = () => {
           </div>
         </div>
       </div>
-
       <div className="container-fluid">
         <div className="row">
           <div className="col-10 mx-auto d-flex justify-content-center">
@@ -145,7 +192,7 @@ const AllToys = () => {
                 {allToys &&
                   allToys.map((toy, i) => (
                     <tr key={toy._id}>
-                      <td>{i + 1}.</td>
+                      <td>{i + 1 + (currentPage * itemsPerPage)}.</td>
                       <th scope="row">
                         <img className="table-img" src={toy?.photoUrl} alt="" />
                       </th>
@@ -171,7 +218,6 @@ const AllToys = () => {
           </div>
         </div>
       </div>
-
       {/* <div className="container">
             <div className="row">
                 {
@@ -179,6 +225,68 @@ const AllToys = () => {
                 }
             </div>
         </div> */}
+      {/* <h2 className="my-5">Pagination</h2> */}
+
+      <div className="container">
+        <div className="row">
+          <div className="col-12 mb-5 d-flex justify-content-end">
+            <nav aria-label="Page navigation example">
+              <ul className="pagination justify-content-end">
+                <li
+                  className={`page-item ${currentPage === 0 ? "disabled" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <a className="page-link" onClick={handlePreviousClick}>
+                    Previous
+                  </a>
+                </li>
+                {pageNumbers &&
+                  pageNumbers.map((number) => (
+                    <li
+                      key={number}
+                      className={`page-item ${
+                        currentPage === number ? "active" : ""
+                      }`}
+                      onClick={() => setCurrentPage(number)}
+                    >
+                      <a className="page-link" href="#">
+                        {number + 1}
+                      </a>
+                    </li>
+                  ))}
+
+                <li
+                  className={`page-item ${
+                    currentPage === totalPages - 1 ? "disabled" : ""
+                  }`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <a className="page-link" onClick={handleNextClick}>
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <div>
+              <select
+                className="form-select"
+                value={itemsPerPage}
+                onChange={handleSelectChange}
+                aria-label="Default select example"
+              >
+                <option disabled>Items per page</option>
+                {options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </>
   );
 };

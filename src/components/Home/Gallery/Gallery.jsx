@@ -34,7 +34,6 @@ const Gallery = () => {
     <>
       <div
         className="container"
-        data-aos="fade-up"
         data-aos-anchor=".other-element"
         data-aos-easing="linear"
         data-aos-duration="2000"
